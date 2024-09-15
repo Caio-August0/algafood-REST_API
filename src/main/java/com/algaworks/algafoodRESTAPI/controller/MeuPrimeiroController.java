@@ -1,21 +1,26 @@
+
 package com.algaworks.algafoodRESTAPI.controller;
 
-import org.springframework.boot.autoconfigure.integration.IntegrationProperties.RSocket.Client;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.algaworks.algafoodRESTAPI.model.Cliente;
+import com.algaworks.algafoodRESTAPI.domain.model.Cliente;
 
 @Controller // Cria um objeto em memória gerenciado pelo spring
 public class MeuPrimeiroController {
 
     private AtivacaoClienteService ativacaoClienteService;
 
-    //  Cria e faz injeção de depedência(o acordo)
-    public MeuPrimeiroController(AtivacaoClienteService AtivacaoClienteService) {
-        this.ativacaoClienteService = AtivacaoClienteService;
+    //  Cria e faz injeção de depedência no SET(o acordo)
+    public MeuPrimeiroController() {
         System.out.println("MeuPrimeiroController");
+    }
+    
+    @Autowired
+    public void setAtivacaoClienteService(AtivacaoClienteService ativacaoClienteService) {
+        this.ativacaoClienteService = ativacaoClienteService;
     }
     
     @GetMapping("/hello")
@@ -27,4 +32,6 @@ public class MeuPrimeiroController {
         // 1 injeção -AtivacaoClienteService => 2 injecao -MeuPrimeiroController
         return "Helho Word.";
     }
+
+
 }

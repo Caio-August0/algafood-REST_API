@@ -1,7 +1,12 @@
-package com.algaworks.algafoodRESTAPI.model;
+package com.algaworks.algafoodRESTAPI.domain.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Cliente {
-    
+    @Id
+    private Long id;
     private String nome;
     private String email;
     private String telefone;
