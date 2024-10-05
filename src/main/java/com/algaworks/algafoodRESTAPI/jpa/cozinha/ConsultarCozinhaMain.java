@@ -20,9 +20,9 @@ public class ConsultarCozinhaMain {
         porém com novas configurações*/
 
         ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodRestApiApplication.class).web(WebApplicationType.NONE).run(args);
-
+        // Recupera o Bean no Spring Conteiner
         CozinhaRepositorio cozinhaRepositorio = applicationContext.getBean(CozinhaRepositorio.class);
-
+        // O Bean irá no permitir métodos
         List<Cozinha> cozinhas = cozinhaRepositorio.listar();
 
         for(Cozinha cozinha: cozinhas) {

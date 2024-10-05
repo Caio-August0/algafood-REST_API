@@ -3,6 +3,7 @@ package com.algaworks.algafoodRESTAPI.infrastructure.repository;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.algaworks.algafoodRESTAPI.domain.model.Cozinha;
 import com.algaworks.algafoodRESTAPI.repository.CozinhaRepositorio;
@@ -12,14 +13,16 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
-@Component
-public class CozinhaRepositoryImpl implements  CozinhaRepositorio{
+@Repository
+public class CozinhaRepositoryImpl implements CozinhaRepositorio{
+    
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<Cozinha> listar() {
-        // Cria uma consulta usando o JPQL para uma classe especifica.
+        // Cria uma instância de consulta usando o Jakarta Persistence query language-JPQL 
+    	// para uma classe especifica.
         // Esse Entity irá interagir como a entidade Cozinha
        TypedQuery<Cozinha> cozinhaTypedQuery;
        cozinhaTypedQuery =  entityManager.createQuery("from Cozinha",Cozinha.class);
@@ -32,6 +35,14 @@ public class CozinhaRepositoryImpl implements  CozinhaRepositorio{
         Cozinha cozinha = entityManager.find(Cozinha.class, id);
         return  cozinha;
     }
+    
+	@Override
+	public List<Cozinha> consultarPorNome(String nomeCozinha) {
+		return entityManager.createQuery("from Cozinha where nome = :nome", Cozinha.class)
+		.setParameter("nome", nomeCozinha) // fazemos um Bind, vinculamos nome a nomeCozinha
+		.getResultList();
+	}
+    
 
     @Override
     @Transactional
@@ -56,5 +67,7 @@ public class CozinhaRepositoryImpl implements  CozinhaRepositorio{
         cozinha = buscar(cozinha.getId());
         entityManager.remove(cozinha);
     }
+
+
 
 }

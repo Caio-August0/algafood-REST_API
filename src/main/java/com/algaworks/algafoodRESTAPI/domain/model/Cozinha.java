@@ -1,5 +1,6 @@
 package com.algaworks.algafoodRESTAPI.domain.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,11 +12,11 @@ public class Cozinha {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incremento
     private Long id;
+    
+    @Column(nullable=false)
     private String nome;
 
-    public Cozinha() {
-
-    }
+    public Cozinha() {}
     
     public Cozinha(String nome) {
         this.nome = nome;
