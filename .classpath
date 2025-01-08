@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="algafood/src/main/java"/>
+	<classpathentry kind="src" path="algafood/src/test/java"/>
+	<classpathentry kind="src" path="untitled/src"/>
+	<classpathentry kind="output" path="algafood/target/classes"/>
+</classpath>
